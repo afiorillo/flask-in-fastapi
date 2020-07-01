@@ -1,0 +1,57 @@
++ DURATION=30s
++ LOAD_WORKERS=2
++ URL=http://localhost:8000/sync
++ http --check-status --pretty=none GET http://localhost:8000/sync
++ hey -z=30s -cpus=2 http://localhost:8000/sync
+
+Summary:
+  Total:        30.7985 secs
+  Slowest:      0.8277 secs
+  Fastest:      0.1054 secs
+  Average:      0.6344 secs
+  Requests/sec: 77.7310
+  
+  Total data:   4788 bytes
+  Size/request: 2 bytes
+
+Response time histogram:
+  0.105 [1]     |
+  0.178 [7]     |
+  0.250 [8]     |
+  0.322 [8]     |
+  0.394 [0]     |
+  0.467 [301]   |■■■■■■■■■■■■■■
+  0.539 [886]   |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  0.611 [0]     |
+  0.683 [4]     |
+  0.755 [297]   |■■■■■■■■■■■■■
+  0.828 [882]   |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+
+
+Latency distribution:
+  10% in 0.4189 secs
+  25% in 0.5079 secs
+  50% in 0.5137 secs
+  75% in 0.8150 secs
+  90% in 0.8170 secs
+  95% in 0.8179 secs
+  99% in 0.8198 secs
+
+Details (average, fastest, slowest):
+  DNS+dialup:   0.0000 secs, 0.1054 secs, 0.8277 secs
+  DNS-lookup:   0.0000 secs, 0.0000 secs, 0.0027 secs
+  req write:    0.0000 secs, 0.0000 secs, 0.0005 secs
+  resp wait:    0.6341 secs, 0.1012 secs, 0.8259 secs
+  resp read:    0.0001 secs, 0.0000 secs, 0.0045 secs
+
+Status code distribution:
+  [200] 2394 responses
+
+
+
++ URL=http://localhost:8000/async
++ http --check-status --pretty=none GET http://localhost:8000/async
++ URL=http://localhost:8000/flask/sync
++ http --check-status --pretty=none GET http://localhost:8000/flask/sync
++ URL=http://localhost:8000/flask/async
++ http --check-status --pretty=none GET http://localhost:8000/flask/async
